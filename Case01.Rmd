@@ -18,43 +18,66 @@ In this analysis we look at the breweries that each beer came from, and examine 
 load(file="datasets.RData")
 #Question 1
 print(table(Breweries$State))
+#Here each state is shown with the number of breweries in each state listed below the state.
 
 #Question 2
 names(Beers)[5] <- "Brew_ID"
 BrewedBeers <- merge(Beers, Breweries, by="Brew_ID")
 head(BrewedBeers, n=6)
+#Here the data is merged by Brew_ID and these are the first 6 observations.
 tail(BrewedBeers, n=6)
+#Here the data is merged by Brew_ID and these are the last 6 observations.
 
 #Question 3
 sum(is.na(BrewedBeers$Brew_ID))
+#This is the number of missing values in the Brew_ID column.
 sum(is.na(BrewedBeers$Name.x))
+#This is the number of missing values in the Name.x column.
 sum(is.na(BrewedBeers$Beer_ID))
+#This is the number of missing values in the Beer_ID column.
 sum(is.na(BrewedBeers$ABV))
+#This is the number of missing values in the ABV column.
 sum(is.na(BrewedBeers$IBU))
+#This is the number of missing values in the IBU column.
 sum(is.na(BrewedBeers$Style))
+#This is the number of missing values in the Style column.
 sum(is.na(BrewedBeers$Ounces))
+#This is the number of missing values in the Ounces column.
 sum(is.na(BrewedBeers$Name.y))
+#This is the number of missing values in the Name.y column.
 sum(is.na(BrewedBeers$City))
+#This is the number of missing values in the City column.
 sum(is.na(BrewedBeers$State))
+#This is the number of missing values in the State column.
 
 #Question 4
 ABVbyState <- sapply(split(BrewedBeers$ABV, BrewedBeers$State), median, na.rm=TRUE)
 print(ABVbyState)
+#This is the median ABV for every state.
 barplot(ABVbyState)
+#This is a barplot of the median ABV for each state.
 IBUbyState <- sapply(split(BrewedBeers$IBU, BrewedBeers$State), median, na.rm=TRUE)
 print(IBUbyState)
+#This is the median IBU for every state.
 barplot(IBUbyState)
+#This is a barplot of the median IBU for each state.
 
 #Question 5
 maxABV <- subset(BrewedBeers, ABV == max(BrewedBeers$ABV, na.rm=TRUE))
 print(maxABV$State)
+#This finds the observation with the maximum ABV, and prints its state.
 maxIBU <- subset(BrewedBeers, IBU == max(BrewedBeers$IBU, na.rm=TRUE))
 print(maxIBU$State)
+#This finds the observation with the maximum IBU, and prints its state.
 
 #Question 6
 summary(BrewedBeers$ABV)
+#These are the summary statistics for the ABV data.
 
 #Question 7
 plot(BrewedBeers$ABV, BrewedBeers$IBU)
 cor(BrewedBeers$ABV, BrewedBeers$IBU, use="complete.obs")
+#This plots a scatterplot of the ABV vs. IBU, and calculates its correlation.
 ```
+## Conclusion
+We discover that there is a positive correlation between alcohol content and bitterness.
