@@ -1,16 +1,3 @@
----
-title: "Questions"
-author: "Alex Stern"
-date: "July 5, 2017"
-output: 
-  html_document:
-    keep_md: TRUE
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ## Introduction
 In this analysis we look at the breweries that each beer came from, and examine the alcohol content and bitterness of each beer by the state from which it was brewed.  We also try to determine if there is a correlation between ABV and IBU.
 
